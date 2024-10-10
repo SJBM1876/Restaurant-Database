@@ -1,20 +1,20 @@
 {
-  "name": "application-servers",
-  "version": "1.0.0",
-  "description": "",
-  "main": "index.js",
-  "scripts": {
-    "seed": "node seed.js",
-    "test": "jest --watchAll"
-  },
-  "keywords": [],
-  "author": "",
-  "license": "ISC",
-  "dependencies": {
-    "sequelize": "^6.21.4",
-    "sqlite3": "^5.0.11"
-  },
-  "devDependencies": {
-    "jest": "^29.7.0"
+    "name": "application-servers",
+    "version": "1.0.0",
+    "description": "",
+    "main": "index.js",
+    "scripts": {
+      "seed": "node seed.js",
+      "test": "jest --watchAll"
+    },
+    "keywords": [],
+    "author": "",
+    "license": "ISC",
+    "dependencies": {
+      "sequelize": "^6.21.4",
+      "sqlite3": "^5.0.11"
+    },
+    "devDependencies": {
+      "jest": "^29.7.0"
+    }
   }
-}

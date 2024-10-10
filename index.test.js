@@ -97,4 +97,39 @@ describe('Restaurant and Menu Models', () => {
         const deletedMenu = await Menu.findByPk(menu.id);
         expect(deletedMenu).toBeNull();
     });
-});
+
+    test('can associate multiple Menus with a Restaurant', async () => {
+        // Create a restaurant
+        const restaurant = await Restaurant.create({
+            name: 'Associated Restaurant',
+            location: 'Association Location',
+            cuisine: 'Association Cuisine'
+        });
+
+        // Create multiple menus
+        const breakfastMenu = await Menu.create({
+            title: 'Breakfast Menu'
+        });
+        const lunchMenu = await Menu.create({
+            title: 'Lunch Menu'
+        });
+        const dinnerMenu = await Menu.create({
+            title: 'Dinner Menu'
+        });
+
+        // Associate menus with the restaurant
+        await restaurant.addMenus([breakfastMenu, lunchMenu, dinnerMenu]);
+
+        // Fetch the restaurant with associated menus
+        const restaurantWithMenus = await Restaurant.findByPk(restaurant.id, {
+            include: ['menus']
+        });
+
+        // Assertions
+        expect(restaurantWithMenus.menus.length).toBe(3);
+        expect(restaurantWithMenus.menus[0].title).toBe('Breakfast Menu');
+        expect(restaurantWithMenus.menus[1].title).toBe('Lunch Menu');
+        expect(restaurantWithMenus.menus[2].title).toBe('Dinner Menu');
+
+     })
+     }) // Verify the association from the Menu side
